@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Квест: Вопрос 1</title>
+    <style>
+        /* Основной стиль для фонового изображения и центрирования контента */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('https://i.ibb.co/tH3hqhC/1702946845-kalix-club-p-kladbishche-fon-vkontakte-foni-4-waifu2x-photo-noise1-scale-1.png'); /* Ссылка на изображение */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 20px;
+        }
+        /* Контейнер для содержания вопроса и формы с эффектом размытия */
+        .container {
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        /* Вопрос */
+        h1 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: white;
+        }
+        /* Поле для ответа и кнопка */
+        input[type="text"], button {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            color: white;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="text"] {
+            border: 1px solid #ddd;
+            background-color: rgba(211, 211, 211, 0.3); /* Светло-серый с прозрачностью */
+        }
+        button {
+            margin-top: 15px;
+            background-color: #fe5000;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #fe5000;
+        }
+        /* Сообщение об ошибке или правильном ответе */
+        .message {
+            margin-top: 15px;
+            font-size: 1em;
+        }
+        .error {
+            color: red;
+        }
+        .success {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Что викторианцы клали в свои гробы, чтобы не быть случайно похороненными заживо?</h1>
+    <input type="text" id="answer" placeholder="Введите ответ">
+    <button onclick="checkAnswer()">Проверить ответ</button>
+    <p id="message" class="message"></p>
+</div>
+
+<script>
+    function checkAnswer() {
+        const answer = document.getElementById("answer").value.toLowerCase(); // Преобразование в нижний регистр
+        const message = document.getElementById("message");
+        
+        if (answer === "колокольчики") { // Правильный ответ
+            message.innerHTML = `
+                Мы как приходим, так уходим <br>
+                А оно как стояло, так и стоит. <br>
+                Предпоследний код найдется сбоку <br>
+                у того, что оранжевое и как монолит
+            `;
+            message.className = "message success";
+        } else {
+            const incorrectMessages = [
+                "Неправильный ответ. Попробуйте еще раз!",
+                "Упс! Неа.",
+                "Может, правильный ответ во множественном числе?"
+            ];
+            // Выбираем случайное сообщение из массива
+            const randomMessage = incorrectMessages[Math.floor(Math.random() * incorrectMessages.length)];
+            message.textContent = randomMessage;
+            message.className = "message error";
+        }
+    }
+</script>
+
+</body>
+</html>
